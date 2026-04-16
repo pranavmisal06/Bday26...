@@ -7,19 +7,19 @@
 <style>
 body {
   margin: 0;
+  padding: 0;
   background: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100dvh; /* FIXED */
   font-family: 'Segoe UI', sans-serif;
 }
 
 /* CONTAINER */
 .container {
-  width: 100%;
-  max-width: 420px;
-  height: 100vh;
+  width: 100vw;   /* FIXED */
+  height: 100dvh; /* FIXED */
   overflow: hidden;
   position: relative;
 }
@@ -57,18 +57,18 @@ video {
 /* VIDEO BUTTONS */
 .controls {
   position: absolute;
-  bottom: 40px;
+  bottom: 5%; /* FIXED */
   display: none;
   gap: 15px;
 }
 
 button {
-  padding: 10px 20px;
-  border-radius: 20px;
+  padding: 12px 22px;
+  border-radius: 25px;
   border: none;
   background: #00c6ff;
   color: black;
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 18px); /* FIXED */
 }
 
 /* PAGE 3 */
@@ -96,8 +96,9 @@ button {
 
 /* MESSAGE */
 .message {
-  width: 85%;
-  font-size: 18px;
+  width: 90%; /* FIXED */
+  max-width: 600px; /* FIXED */
+  font-size: clamp(16px, 2.5vw, 20px); /* FIXED */
   line-height: 1.8;
   padding: 25px;
   border-radius: 20px;
@@ -115,10 +116,10 @@ button {
 
 <div class="container">
 
-<!-- PAGE 1 (CLICK ANYWHERE) -->
+<!-- PAGE 1 -->
 <div id="page1" class="page active" onclick="nextPage(2)"></div>
 
-<!-- PAGE 2 (VIDEO) -->
+<!-- PAGE 2 -->
 <div id="page2" class="page">
   <video id="myVideo" src="1604.mp4" playsinline></video>
 
@@ -128,7 +129,7 @@ button {
   </div>
 </div>
 
-<!-- PAGE 3 (MESSAGE) -->
+<!-- PAGE 3 -->
 <div id="page3" class="page">
   <div id="blurbg"></div>
   <div id="overlay"></div>
@@ -156,7 +157,6 @@ function nextPage(num) {
     v.currentTime = 0;
     v.play();
 
-    // show buttons after video ends
     v.onended = function(){
       document.getElementById("controls").style.display = "flex";
     };
