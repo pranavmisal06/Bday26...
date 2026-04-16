@@ -12,14 +12,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100dvh; /* FIXED */
+  height: 100dvh;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* CONTAINER */
 .container {
-  width: 100vw;   /* FIXED */
-  height: 100dvh; /* FIXED */
+  width: 100vw;
+  height: 100dvh;
   overflow: hidden;
   position: relative;
 }
@@ -41,23 +40,25 @@ body {
   display: flex;
 }
 
-/* PAGE 1 */
+/* ✅ FIXED IMAGE (NO ZOOM) */
 #page1 {
-  background: url('Birthday Photo Collage Canvas Print in Teal Light Blue Polaroid Style 2.png') center/cover no-repeat;
+  background: url('Birthday Photo Collage Canvas Print in Teal Light Blue Polaroid Style 2.png') center center no-repeat;
+  background-size: contain; /* IMPORTANT */
+  background-color: black;
 }
 
-/* VIDEO */
+/* ✅ FIXED VIDEO (NO ZOOM) */
 video {
-  position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain; /* IMPORTANT */
+  background: black;
 }
 
-/* VIDEO BUTTONS */
+/* BUTTONS */
 .controls {
   position: absolute;
-  bottom: 5%; /* FIXED */
+  bottom: 5%;
   display: none;
   gap: 15px;
 }
@@ -68,7 +69,7 @@ button {
   border: none;
   background: #00c6ff;
   color: black;
-  font-size: clamp(14px, 2vw, 18px); /* FIXED */
+  font-size: clamp(14px, 2vw, 18px);
 }
 
 /* PAGE 3 */
@@ -76,7 +77,6 @@ button {
   position: relative;
 }
 
-/* BLUR BG */
 #blurbg {
   position: absolute;
   width: 100%;
@@ -94,11 +94,10 @@ button {
   z-index: -1;
 }
 
-/* MESSAGE */
 .message {
-  width: 90%; /* FIXED */
-  max-width: 600px; /* FIXED */
-  font-size: clamp(16px, 2.5vw, 20px); /* FIXED */
+  width: 90%;
+  max-width: 600px;
+  font-size: clamp(16px, 2.5vw, 20px);
   line-height: 1.8;
   padding: 25px;
   border-radius: 20px;
@@ -116,10 +115,8 @@ button {
 
 <div class="container">
 
-<!-- PAGE 1 -->
 <div id="page1" class="page active" onclick="nextPage(2)"></div>
 
-<!-- PAGE 2 -->
 <div id="page2" class="page">
   <video id="myVideo" src="1604.mp4" playsinline></video>
 
@@ -129,7 +126,6 @@ button {
   </div>
 </div>
 
-<!-- PAGE 3 -->
 <div id="page3" class="page">
   <div id="blurbg"></div>
   <div id="overlay"></div>
@@ -147,7 +143,6 @@ button {
 </div>
 
 <script>
-
 function nextPage(num) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page' + num).classList.add('active');
@@ -169,7 +164,6 @@ function replay(){
   v.currentTime = 0;
   v.play();
 }
-
 </script>
 
 </body>
