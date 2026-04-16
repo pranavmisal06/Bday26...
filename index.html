@@ -168,3 +168,173 @@ function replay(){
 
 </body>
 </html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 💙</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.container {
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* PAGES */
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+
+.active {
+  display: flex;
+}
+
+/* ✅ FIXED IMAGE (NO ZOOM) */
+#page1 {
+  background: url('Birthday Photo Collage Canvas Print in Teal Light Blue Polaroid Style 2.png') center center no-repeat;
+  background-size: contain; /* IMPORTANT */
+  background-color: black;
+}
+
+/* ✅ FIXED VIDEO (NO ZOOM) */
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* IMPORTANT */
+  background: black;
+}
+
+/* BUTTONS */
+.controls {
+  position: absolute;
+  bottom: 5%;
+  display: none;
+  gap: 15px;
+}
+
+button {
+  padding: 12px 22px;
+  border-radius: 25px;
+  border: none;
+  background: #00c6ff;
+  color: black;
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+/* PAGE 3 */
+#page3 {
+  position: relative;
+}
+
+#blurbg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg,#a8d8ff,#6fb1fc,#3a7bd5);
+  filter: blur(40px);
+  z-index: -2;
+}
+
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,50,0.5);
+  z-index: -1;
+}
+
+.message {
+  width: 90%;
+  max-width: 600px;
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.8;
+  padding: 25px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+}
+
+.message p {
+  margin: 10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="page1" class="page active" onclick="nextPage(2)"></div>
+
+<div id="page2" class="page">
+  <video id="myVideo" src="1604.mp4" playsinline></video>
+
+  <div class="controls" id="controls">
+    <button onclick="replay()">Replay</button>
+    <button onclick="nextPage(3)">Next</button>
+  </div>
+</div>
+
+<div id="page3" class="page">
+  <div id="blurbg"></div>
+  <div id="overlay"></div>
+
+  <div class="message">
+    <p>I don’t say this often…</p>
+    <p>But u know u are important to me 💙</p>
+    <p>I don't know how to describe my feeling but u understand everytime,<br>Thanks for being in my Life 🥺</p>
+    <p>Shayad zyada photos nahi hai…<br>Per ab jyda nakhre mat kr itne me khush Reh ✨</p>
+    <p>Ab jyda smile mt kr </p>
+    <p>Happy Birthday Once Again ❤️</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+function nextPage(num) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page' + num).classList.add('active');
+
+  if(num === 2){
+    let v = document.getElementById("myVideo");
+    v.currentTime = 0;
+    v.play();
+
+    v.onended = function(){
+      document.getElementById("controls").style.display = "flex";
+    };
+  }
+}
+
+function replay(){
+  let v = document.getElementById("myVideo");
+  document.getElementById("controls").style.display = "none";
+  v.currentTime = 0;
+  v.play();
+}
+</script>
+
+</body>
+</html>
